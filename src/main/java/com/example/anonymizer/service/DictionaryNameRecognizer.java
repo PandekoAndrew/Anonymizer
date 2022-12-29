@@ -8,21 +8,13 @@ import java.util.Map;
 import java.util.Set;
 
 @Service
-public class DictionaryNameRecognizer implements NameRecognizer{
+public class DictionaryNameRecognizer implements NameRecognizer {
 
-    @Value("${firstNames}")
-    private Set<String> firstNames;
-    @Value("${lastNames}")
-    private Set<String> lastNames;
-    @Value("${companyNames}")
-    private Set<String> companyNames;
+    @Value("#{${dictionary}}")
+    private Map<String, Set<String>> recognizedNames = new HashMap<String, Set<String>>();
 
     @Override
     public Map<String, Set<String>> recognizeNames(String input) {
-        Map<String, Set<String>> result= new HashMap<>();
-        result.put("fname", firstNames);
-        result.put("lname", lastNames);
-        result.put("company", companyNames);
-        return result;
+        return recognizedNames;
     }
 }

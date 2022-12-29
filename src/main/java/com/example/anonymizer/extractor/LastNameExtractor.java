@@ -1,16 +1,11 @@
 package com.example.anonymizer.extractor;
 
 import com.example.anonymizer.service.NameRecognizer;
-import lombok.AllArgsConstructor;
 
-import java.util.Set;
+public class LastNameExtractor extends RecognizeExtractor {
 
-@AllArgsConstructor
-public class LastNameExtractor implements Extractor{
-    private final NameRecognizer nameRecognizer;
-
-    @Override
-    public Set<String> extract(String input) {
-        return nameRecognizer.recognizeNames(input).get("lname");
+    public LastNameExtractor(NameRecognizer nameRecognizer) {
+        this.nameRecognizer = nameRecognizer;
+        this.key = "lname";
     }
 }
