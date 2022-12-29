@@ -20,8 +20,16 @@ public class FakeValuesGenerator {
         return faker.internet().url();
     }
 
-    public String generateName(){
-        return faker.name().fullName();
+    public String generateFirstName(){
+        return faker.name().firstName();
+    }
+
+    public String generateLastName(){
+        return faker.name().lastName();
+    }
+
+    public String generateCompanyName(){
+        return faker.company().name();
     }
 
     public String generateID(){

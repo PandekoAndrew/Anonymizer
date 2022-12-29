@@ -34,7 +34,23 @@ public class AnonymizerService {
             result = result.replace(s, fakeValuesGenerator.generateURL());
         }
 
-        Set<String> extractedNames = extractor.extractNames(input);
+        Set<String> extractedFirstNames = extractor.extractFirstNames(input);
+
+        for(String s : extractedFirstNames) {
+            result = result.replace(s, fakeValuesGenerator.generateFirstName());
+        }
+
+        Set<String> extractedLastNames = extractor.extractLastNames(input);
+
+        for(String s : extractedLastNames) {
+            result = result.replace(s, fakeValuesGenerator.generateLastName());
+        }
+
+        Set<String> extractedCompanyNames = extractor.extractCompanyNames(input);
+
+        for(String s : extractedCompanyNames) {
+            result = result.replace(s, fakeValuesGenerator.generateCompanyName());
+        }
 
         return result;
     }

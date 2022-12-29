@@ -1,5 +1,6 @@
 package com.example.anonymizer.service;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -9,6 +10,12 @@ import java.util.regex.Pattern;
 
 @Service
 public class Extractor {
+
+    private final NameRecognizer nameRecognizer;
+
+    public Extractor(@Qualifier("dictionaryNameRecognizer") NameRecognizer nameRecognizer) {
+        this.nameRecognizer = nameRecognizer;
+    }
 
     public Set<String> extractIDs(String input) {
         Set<String> result = new HashSet<>();
@@ -52,10 +59,15 @@ public class Extractor {
         return result;
     }
 
-    public Set<String> extractNames(String input) {
-        Set<String> result = new HashSet<>();
+    public Set<String> extractFirstNames(String input) {
+        return nameRecognizer.recognizeNames(input).get("fname");
+    }
 
+    public Set<String> extractLastNames(String input) {
+        return nameRecognizer.recognizeNames(input).get("lname");
+    }
 
-        return result;
+    public Set<String> extractCompanyNames(String input) {
+        return nameRecognizer.recognizeNames(input).get("company");
     }
 }
