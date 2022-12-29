@@ -3,7 +3,7 @@ package com.example.anonymizer.extractor;
 public class UrlExtractor extends RegexExtractor {
 
     public UrlExtractor() {
-        this.regex = "[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)";
+        this.regex = "(https?):\\/\\/([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])";
     }
 
 }
