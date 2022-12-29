@@ -1,57 +1,35 @@
 package com.example.anonymizer.service;
 
+import com.example.anonymizer.extractor.*;
+import com.example.anonymizer.generator.*;
+import com.example.anonymizer.model.Anonymizer;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AnonymizerService {
-    private final FakeValuesGenerator fakeValuesGenerator;
-    private final Extractor extractor;
 
-    public AnonymizerService(FakeValuesGenerator fakeValuesGenerator, Extractor extractor) {
-        this.fakeValuesGenerator = fakeValuesGenerator;
-        this.extractor = extractor;
+    private List<Anonymizer> anonymizers;
+
+    public AnonymizerService(@Qualifier("dictionaryNameRecognizer") NameRecognizer nameRecognizer) {
+        this.anonymizers = new ArrayList<>();
+        anonymizers.add(new Anonymizer(new IdExtractor(), new IdGenerator()));
+        anonymizers.add(new Anonymizer(new UrlExtractor(), new UrlGenerator()));
+        anonymizers.add(new Anonymizer(new EmailExtractor(), new EmailGenerator()));
+        anonymizers.add(new Anonymizer(new FirstNameExtractor(nameRecognizer), new FirstNameGenerator()));
+        anonymizers.add(new Anonymizer(new LastNameExtractor(nameRecognizer), new LastNameGenerator()));
+        anonymizers.add(new Anonymizer(new CompanyExtractor(nameRecognizer), new CompanyGenerator()));
+
     }
 
     public String anonymize(String input) {
-        String result = input;
-        Set<String> extractedIDs = extractor.extractIDs(input);
-
-        for(String s : extractedIDs){
-            result = result.replace(s, fakeValuesGenerator.generateID());
+        for (Anonymizer a : anonymizers) {
+            input = a.anonymize(input);
         }
 
-        Set<String> extractedEmails = extractor.extractEmails(input);
-
-        for(String s : extractedEmails) {
-            result = result.replace(s, fakeValuesGenerator.generateEmail());
-        }
-
-        Set<String> extractedURLs = extractor.extractURLs(input);
-
-        for(String s : extractedURLs) {
-            result = result.replace(s, fakeValuesGenerator.generateURL());
-        }
-
-        Set<String> extractedFirstNames = extractor.extractFirstNames(input);
-
-        for(String s : extractedFirstNames) {
-            result = result.replace(s, fakeValuesGenerator.generateFirstName());
-        }
-
-        Set<String> extractedLastNames = extractor.extractLastNames(input);
-
-        for(String s : extractedLastNames) {
-            result = result.replace(s, fakeValuesGenerator.generateLastName());
-        }
-
-        Set<String> extractedCompanyNames = extractor.extractCompanyNames(input);
-
-        for(String s : extractedCompanyNames) {
-            result = result.replace(s, fakeValuesGenerator.generateCompanyName());
-        }
-
-        return result;
+        return input;
     }
 }
