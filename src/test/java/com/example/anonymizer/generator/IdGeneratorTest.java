@@ -26,7 +26,8 @@ class IdGeneratorTest {
     }
 
     @Test
-    void generate() {
+    void TestGenerateSuccess() {
+        setUp();
         String result = generator.generate();
         assertEquals("12345678", result);
     }

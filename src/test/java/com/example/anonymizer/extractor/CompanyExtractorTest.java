@@ -9,6 +9,7 @@ import org.mockito.Mockito;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 class CompanyExtractorTest extends AbstactTest {
@@ -24,10 +25,18 @@ class CompanyExtractorTest extends AbstactTest {
     }
 
     @Test
-    void extract() {
+    void TestExtractSuccess() {
         when(nameRecognizer.recognizeNames(Mockito.anyString())).thenReturn(RECOGNIZED_NAMES);
         Set<String> result = extractor.extract(INPUT);
         verify(nameRecognizer, times(1)).recognizeNames(INPUT);
         assertEquals(RECOGNIZED_NAMES.get("company"), result);
+    }
+
+    @Test
+    void TestExtractNullPointer() {
+        when(nameRecognizer.recognizeNames(Mockito.anyString())).thenReturn(null);
+        assertThrows(NullPointerException.class, () -> {
+            extractor.extract(INPUT);
+        });
     }
 }

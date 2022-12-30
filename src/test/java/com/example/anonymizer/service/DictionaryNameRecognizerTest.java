@@ -14,7 +14,7 @@ class DictionaryNameRecognizerTest extends AbstactTest {
     private DictionaryNameRecognizer nameRecognizer;
 
     @Test
-    void recognizeNames() {
+    void TestRecognizeNamesSuccess() {
         assertEquals(RECOGNIZED_NAMES, nameRecognizer.recognizeNames(INPUT));
     }
 }

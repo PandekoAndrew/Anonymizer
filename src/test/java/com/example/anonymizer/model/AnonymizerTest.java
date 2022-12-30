@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -29,7 +30,7 @@ class AnonymizerTest extends AbstactTest {
     }
 
     @Test
-    void anonymize() {
+    void TestAnonymizeSuccess() {
         String expected = INPUT.replace("Andrei", "Amber");
         when(extractor.extract(anyString())).thenReturn(Set.of("Andrei"));
         when(generator.generate()).thenReturn("Amber");
@@ -37,5 +38,15 @@ class AnonymizerTest extends AbstactTest {
         verify(generator, times(1)).generate();
         verify(extractor, times(1)).extract(anyString());
         assertEquals(expected, result);
+    }
+
+    @Test
+    void TestAnonymizeNullPointer() {
+        when(extractor.extract(anyString())).thenReturn(null);
+        when(generator.generate()).thenReturn(null);
+
+        assertThrows(NullPointerException.class, () -> {
+            anonymizer.anonymize(INPUT);
+        });
     }
 }

@@ -9,6 +9,7 @@ import org.mockito.Mockito;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 class FirstNameExtractorTest extends AbstactTest {
@@ -28,5 +29,13 @@ class FirstNameExtractorTest extends AbstactTest {
         Set<String> result = extractor.extract(INPUT);
         verify(nameRecognizer, times(1)).recognizeNames(INPUT);
         assertEquals(RECOGNIZED_NAMES.get("fname"), result);
+    }
+
+    @Test
+    void TestExtractNullPointer() {
+        when(nameRecognizer.recognizeNames(Mockito.anyString())).thenReturn(null);
+        assertThrows(NullPointerException.class, () -> {
+            extractor.extract(INPUT);
+        });
     }
 }

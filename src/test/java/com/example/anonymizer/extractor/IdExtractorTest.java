@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class IdExtractorTest extends AbstactTest {
 
@@ -19,9 +20,15 @@ class IdExtractorTest extends AbstactTest {
     }
 
     @Test
-    void extract() {
+    void TestExtractSuccess() {
         Set<String> result = extractor.extract(INPUT);
         assertEquals(Set.of("12345678"), result);
     }
 
+    @Test
+    void TestExtractNullPointer() {
+        assertThrows(NullPointerException.class, () -> {
+            extractor.extract(null);
+        });
+    }
 }

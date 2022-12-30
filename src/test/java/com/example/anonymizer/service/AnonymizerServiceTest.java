@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 class AnonymizerServiceTest extends AbstactTest {
@@ -24,7 +25,7 @@ class AnonymizerServiceTest extends AbstactTest {
     }
 
     @Test
-    void anonymize() {
+    void TestAnonymizeSuccess() {
         String expected = "TEST";
         for (Anonymizer a : anonymizers) {
             when(a.anonymize(anyString())).thenReturn("TEST");
@@ -34,5 +35,15 @@ class AnonymizerServiceTest extends AbstactTest {
             verify(a, times(1)).anonymize(anyString());
         }
         assertEquals(expected, result);
+    }
+
+    @Test
+    void TestAnonymizeReturnNull() {
+        for (Anonymizer a : anonymizers) {
+            when(a.anonymize(anyString())).thenReturn(null);
+        }
+
+        String result = anonymizerService.anonymize(INPUT);
+        assertNull(result);
     }
 }
