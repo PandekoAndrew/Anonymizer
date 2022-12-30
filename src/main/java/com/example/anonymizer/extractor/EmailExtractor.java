@@ -1,8 +1,11 @@
 package com.example.anonymizer.extractor;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Extracts emails
  */
+@Component
 public class EmailExtractor extends RegexExtractor {
 
     public EmailExtractor() {

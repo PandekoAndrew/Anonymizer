@@ -1,13 +1,14 @@
 package com.example.anonymizer.generator;
 
-import com.github.javafaker.Faker;
+import org.springframework.stereotype.Component;
 
 /**
  * Generates a random last name
  */
-public class LastNameGenerator implements Generator{
+@Component
+public class LastNameGenerator extends Generator {
     @Override
     public String generate() {
-        return new Faker().name().lastName();
+        return faker.name().lastName();
     }
 }

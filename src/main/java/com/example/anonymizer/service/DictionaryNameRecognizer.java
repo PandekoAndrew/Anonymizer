@@ -1,7 +1,6 @@
 package com.example.anonymizer.service;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +9,6 @@ import java.util.Set;
 /**
  * Service that recognize names using dictionary
  */
-@Service
 public class DictionaryNameRecognizer implements NameRecognizer {
 
     @Value("#{${dictionary}}")

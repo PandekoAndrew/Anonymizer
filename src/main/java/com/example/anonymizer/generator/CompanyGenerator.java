@@ -1,13 +1,14 @@
 package com.example.anonymizer.generator;
 
-import com.github.javafaker.Faker;
+import org.springframework.stereotype.Component;
 
 /**
  * Generates random company name
  */
-public class CompanyGenerator implements Generator{
+@Component
+public class CompanyGenerator extends Generator {
     @Override
     public String generate() {
-        return new Faker().company().name();
+        return faker.company().name();
     }
 }

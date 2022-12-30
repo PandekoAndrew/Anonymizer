@@ -25,13 +25,14 @@ class AnonymizerServiceTest extends AbstactTest {
 
     @Test
     void anonymize() {
+        String expected = "TEST";
         for (Anonymizer a : anonymizers) {
-            when(a.anonymize(INPUT)).thenReturn(INPUT);
+            when(a.anonymize(anyString())).thenReturn("TEST");
         }
         String result = anonymizerService.anonymize(INPUT);
         for (Anonymizer a : anonymizers) {
-            verify(a, times(1)).anonymize(INPUT);
+            verify(a, times(1)).anonymize(anyString());
         }
-        assertEquals(INPUT, result);
+        assertEquals(expected, result);
     }
 }

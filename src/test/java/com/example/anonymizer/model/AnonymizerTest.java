@@ -30,11 +30,12 @@ class AnonymizerTest extends AbstactTest {
 
     @Test
     void anonymize() {
+        String expected = INPUT.replace("Andrei", "Amber");
         when(extractor.extract(anyString())).thenReturn(Set.of("Andrei"));
         when(generator.generate()).thenReturn("Amber");
         String result = anonymizer.anonymize(INPUT);
         verify(generator, times(1)).generate();
         verify(extractor, times(1)).extract(anyString());
-        assertEquals("Hello, my name is Amber Pandeko. I'm working in iTechArt. pandzeka.andrei@itechart-group.com. 12345678. https://google.com/help", result);
+        assertEquals(expected, result);
     }
 }

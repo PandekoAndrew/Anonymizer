@@ -1,13 +1,14 @@
 package com.example.anonymizer.generator;
 
-import com.github.javafaker.Faker;
+import org.springframework.stereotype.Component;
 
 /**
  * Generates a random domain name
  */
-public class DomainGenerator implements Generator {
+@Component
+public class DomainGenerator extends Generator {
     @Override
     public String generate() {
-        return new Faker().internet().domainName();
+        return faker.internet().domainName();
     }
 }

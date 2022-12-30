@@ -1,8 +1,18 @@
 package com.example.anonymizer.generator;
 
+import com.github.javafaker.Faker;
+import org.springframework.beans.factory.annotation.Autowired;
+
 /**
- * Interface that provides text generation
+ * Abstract class that provides text generation
  */
-public interface Generator {
-    String generate();
+public abstract class Generator {
+    protected Faker faker;
+
+    @Autowired
+    public final void setFaker(Faker faker) {
+        this.faker = faker;
+    }
+
+    public abstract String generate();
 }

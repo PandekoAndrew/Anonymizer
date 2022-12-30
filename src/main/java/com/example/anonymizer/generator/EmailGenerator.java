@@ -1,13 +1,14 @@
 package com.example.anonymizer.generator;
 
-import com.github.javafaker.Faker;
+import org.springframework.stereotype.Component;
 
 /**
  * Generate a random email
  */
-public class EmailGenerator implements Generator{
+@Component
+public class EmailGenerator extends Generator {
     @Override
     public String generate() {
-        return new Faker().internet().safeEmailAddress();
+        return faker.internet().safeEmailAddress();
     }
 }
