@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+/**
+ * Provides request mapping for anonymization
+ */
 @RestController
 @RequestMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
@@ -22,6 +25,7 @@ public class AnonymizerController {
 
     @PostMapping(path = "/anonymize", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OutputDTO> anonymize(@RequestBody JsonNode input) {
+
         String output = anonymizerService.anonymize(input.get("input").asText());
         return ResponseEntity.ok(new OutputDTO(output));
     }

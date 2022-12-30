@@ -1,5 +1,8 @@
 package com.example.anonymizer.extractor;
 
+/**
+ * Extracts emails
+ */
 public class EmailExtractor extends RegexExtractor {
 
     public EmailExtractor() {

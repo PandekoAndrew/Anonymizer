@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Service that recognize names using dictionary
+ */
 @Service
 public class DictionaryNameRecognizer implements NameRecognizer {
 

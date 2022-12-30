@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service that anonymize text using given anonymizers
+ */
 @Service
 public class AnonymizerService {
 
@@ -14,6 +17,10 @@ public class AnonymizerService {
         this.anonymizers = anonymizers;
     }
 
+    /**
+     * @param input text to be anonymized
+     * @return anonymized text
+     */
     public String anonymize(String input) {
         for (Anonymizer a : anonymizers) {
             input = a.anonymize(input);
