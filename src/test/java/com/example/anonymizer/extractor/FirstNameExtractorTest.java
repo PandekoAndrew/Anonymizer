@@ -32,7 +32,7 @@ class FirstNameExtractorTest extends AbstactTest {
     }
 
     @Test
-    void TestExtractNullPointer() {
+    void testExtractNullPointer() {
         when(nameRecognizer.recognizeNames(Mockito.anyString())).thenReturn(null);
         assertThrows(NullPointerException.class, () -> {
             extractor.extract(INPUT);

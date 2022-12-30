@@ -30,7 +30,7 @@ class AnonymizerTest extends AbstactTest {
     }
 
     @Test
-    void TestAnonymizeSuccess() {
+    void testAnonymizeSuccess() {
         String expected = INPUT.replace("Andrei", "Amber");
         when(extractor.extract(anyString())).thenReturn(Set.of("Andrei"));
         when(generator.generate()).thenReturn("Amber");
@@ -41,7 +41,7 @@ class AnonymizerTest extends AbstactTest {
     }
 
     @Test
-    void TestAnonymizeNullPointer() {
+    void testAnonymizeNullPointer() {
         when(extractor.extract(anyString())).thenReturn(null);
         when(generator.generate()).thenReturn(null);
 

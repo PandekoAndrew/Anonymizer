@@ -25,7 +25,7 @@ class AnonymizerServiceTest extends AbstactTest {
     }
 
     @Test
-    void TestAnonymizeSuccess() {
+    void testAnonymizeSuccess() {
         String expected = "TEST";
         for (Anonymizer a : anonymizers) {
             when(a.anonymize(anyString())).thenReturn("TEST");
@@ -38,7 +38,7 @@ class AnonymizerServiceTest extends AbstactTest {
     }
 
     @Test
-    void TestAnonymizeReturnNull() {
+    void testAnonymizeReturnNull() {
         for (Anonymizer a : anonymizers) {
             when(a.anonymize(anyString())).thenReturn(null);
         }

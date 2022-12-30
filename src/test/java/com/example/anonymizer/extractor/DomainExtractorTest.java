@@ -19,13 +19,13 @@ class DomainExtractorTest extends AbstactTest {
     }
 
     @Test
-    void TestExtractSuccess() {
+    void testExtractSuccess() {
         Set<String> result = extractor.extract(INPUT);
         assertEquals(Set.of("google.com"), result);
     }
 
     @Test
-    void TestExtractNullPointer() {
+    void testExtractNullPointer() {
         assertThrows(NullPointerException.class, () -> {
             extractor.extract(null);
         });

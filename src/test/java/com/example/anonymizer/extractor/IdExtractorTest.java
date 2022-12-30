@@ -20,13 +20,13 @@ class IdExtractorTest extends AbstactTest {
     }
 
     @Test
-    void TestExtractSuccess() {
+    void testExtractSuccess() {
         Set<String> result = extractor.extract(INPUT);
         assertEquals(Set.of("12345678"), result);
     }
 
     @Test
-    void TestExtractNullPointer() {
+    void testExtractNullPointer() {
         assertThrows(NullPointerException.class, () -> {
             extractor.extract(null);
         });

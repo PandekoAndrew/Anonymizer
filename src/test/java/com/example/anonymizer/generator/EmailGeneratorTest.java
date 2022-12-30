@@ -44,14 +44,14 @@ class EmailGeneratorTest {
     }
 
     @Test
-    void TestGenerateSuccess() {
+    void testGenerateSuccess() {
         setUp();
         String result = generator.generate();
         assertEquals("foo@gmail.com", result);
     }
 
     @Test
-    void TestGenerateEmpty() {
+    void testGenerateEmpty() {
         setUpEmpty();
         String result = generator.generate();
         assertTrue(result.isEmpty());

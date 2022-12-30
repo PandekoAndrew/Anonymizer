@@ -19,13 +19,13 @@ class EmailExtractorTest extends AbstactTest {
     }
 
     @Test
-    void TestExtractSuccess() {
+    void testExtractSuccess() {
         Set<String> result = extractor.extract(INPUT);
         assertEquals(Set.of("pandzeka.andrei@itechart-group.com"), result);
     }
 
     @Test
-    void TestExtractNullPointer() {
+    void testExtractNullPointer() {
         assertThrows(NullPointerException.class, () -> {
             extractor.extract(null);
         });

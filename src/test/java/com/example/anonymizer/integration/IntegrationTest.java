@@ -30,7 +30,7 @@ public class IntegrationTest extends AbstactTest {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
-    void TestAnonymizeOk() throws Exception {
+    void testAnonymizeOk() throws Exception {
 
         JsonNode input = objectMapper.readTree(String.format("{\"input\" : \"%s\"}", INPUT));
 
@@ -45,7 +45,7 @@ public class IntegrationTest extends AbstactTest {
     }
 
     @Test
-    void TestAnonymizeUnsupported() throws Exception {
+    void testAnonymizeUnsupported() throws Exception {
 
         JsonNode input = objectMapper.readTree(String.format("{\"input\" : \"%s\"}", INPUT));
 

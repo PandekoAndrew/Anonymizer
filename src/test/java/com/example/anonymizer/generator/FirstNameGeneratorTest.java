@@ -47,21 +47,21 @@ class FirstNameGeneratorTest {
     }
 
     @Test
-    void TestGenerateSuccess() {
+    void testGenerateSuccess() {
         setUp();
         String result = generator.generate();
         assertEquals("Wolter", result);
     }
 
     @Test
-    void TestGenerateEmpty() {
+    void testGenerateEmpty() {
         setUpEmpty();
         String result = generator.generate();
         assertTrue(result.isEmpty());
     }
 
     @Test
-    void TestGenerateNull() {
+    void testGenerateNull() {
         setUpNull();
         assertNull(generator.generate());
     }
