@@ -8,19 +8,19 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class UrlExtractorTest extends AbstactTest {
-    private UrlExtractor extractor;
+class DomainExtractorTest extends AbstactTest {
+    private DomainExtractor extractor;
 
 
     @BeforeEach
     void setUp() {
-        extractor = new UrlExtractor();
+        extractor = new DomainExtractor();
     }
 
     @Test
     void extract() {
         Set<String> result = extractor.extract(INPUT);
-        assertEquals(Set.of("https://google.com"), result);
+        assertEquals(Set.of("google.com"), result);
     }
 
 }

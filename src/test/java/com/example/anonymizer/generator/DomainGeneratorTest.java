@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class UrlGeneratorTest {
-    private UrlGenerator generator;
+class DomainGeneratorTest {
+    private DomainGenerator generator;
 
     @BeforeEach
     void setUp() {
-        generator = new UrlGenerator();
+        generator = new DomainGenerator();
     }
 
     @Test

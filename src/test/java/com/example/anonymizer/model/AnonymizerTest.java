@@ -35,6 +35,6 @@ class AnonymizerTest extends AbstactTest {
         String result = anonymizer.anonymize(INPUT);
         verify(generator, times(1)).generate();
         verify(extractor, times(1)).extract(anyString());
-        assertEquals("Hello, my name is Amber Pandeko. I'm working in iTechArt. pandzeka.andrei@itechart-group.com. 12345678. https://google.com", result);
+        assertEquals("Hello, my name is Amber Pandeko. I'm working in iTechArt. pandzeka.andrei@itechart-group.com. 12345678. https://google.com/help", result);
     }
 }
