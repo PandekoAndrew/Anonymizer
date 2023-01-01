@@ -41,6 +41,12 @@ Content-Type: application/json
 {"output": "Hello, my name is Palmira Berge.\nI am working in Keebler and Sons.\nE: felicitas.feil@example.com.\nID: 35229149.\nhttps://kerluke.com/help"}
 ```
 
+## Neuron implementation
+
+For firstnames, lastnames, and companies by default we're using dictionary recognition.
+To change implementation to neuron you can edit qualifier of NameRecognizer from `dictionaryNameRecognizer`
+to `neuronNameRecognizer` in [BeanConfig](src/main/java/com/example/anonymizer/config/BeanConfig.java)
+
 ## Environment
 
 - [dictionary](src/main/resources/application.properties) - contains recognizable first names, last names and company

@@ -1,18 +1,20 @@
 package com.example.anonymizer.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 /**
  * Service that recognize names using dictionary
  */
-public class DictionaryNameRecognizer implements NameRecognizer {
+@Service
+public class DictionaryNameRecognizer extends NameRecognizer {
 
-    @Value("#{${dictionary}}")
-    private Map<String, Set<String>> recognizedNames = new HashMap<String, Set<String>>();
+    public DictionaryNameRecognizer(@Value("#{${dictionary}}") Map<String, Set<String>> recognizedNames) {
+        this.recognizedNames = recognizedNames;
+    }
 
     @Override
     public Map<String, Set<String>> recognizeNames(String input) {

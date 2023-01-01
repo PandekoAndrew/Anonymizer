@@ -6,7 +6,9 @@ import java.util.Set;
 /**
  * Interface that provides names recognition in given text
  */
-public interface NameRecognizer {
+public abstract class NameRecognizer {
 
-    Map<String, Set<String>> recognizeNames(String input);
+    protected Map<String, Set<String>> recognizedNames;
+
+    public abstract Map<String, Set<String>> recognizeNames(String input);
 }
