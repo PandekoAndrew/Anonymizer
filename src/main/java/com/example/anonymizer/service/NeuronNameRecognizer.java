@@ -32,26 +32,21 @@ public class NeuronNameRecognizer extends NameRecognizer {
 
         input = prepareForAnalysis(input);
         // Tokenise sentences
-        try {
-            InputStream inputStreamTokenizer = new FileInputStream("src/main/resources/opennlp-en-ud-ewt-tokens-1.0-1.9.3.bin");
+        try (InputStream inputStreamTokenizer = new FileInputStream("src/main/resources/opennlp-en-ud-ewt-tokens-1.0-1.9.3.bin");
+             InputStream inputStream = new FileInputStream("src/main/resources/ner-custom-model.bin")) {
             TokenizerModel tokenModel = new TokenizerModel(inputStreamTokenizer);
             TokenizerME tokenizer = new TokenizerME(tokenModel);
             String[] tokens = tokenizer.tokenize(input);
             //Load the model
-            InputStream inputStream = new FileInputStream("src/main/resources/ner-custom-model.bin");
-            TokenNameFinderModel model;
-
-            model = new TokenNameFinderModel(inputStream);
-
+            TokenNameFinderModel model = new TokenNameFinderModel(inputStream);
             NameFinderME nameFinder = new NameFinderME(model);
             Span nameSpans[] = nameFinder.find(tokens);
             for (Span name : nameSpans) {
-                String entity = "";
+                StringBuilder entity = new StringBuilder("");
                 for (int i = name.getStart(); i < name.getEnd(); i++) {
-                    entity += tokens[i] + " ";
+                    entity.append(tokens[i] + " ");
                 }
-                entity = entity.trim();
-                recognizedNames.get(name.getType()).add(entity);
+                recognizedNames.get(name.getType()).add(entity.toString().trim());
             }
         } catch (IOException e) {
             e.printStackTrace();
